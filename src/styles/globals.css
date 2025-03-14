@@ -1,0 +1,16 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  background-color: yellow !important;
+  color: black !important;
+  font-family: monospace;
+  min-height: 100vh;
+}
+
+/* Optional: Add custom font if needed */
+@font-face {
+  font-family: 'YourMonospaceFont';
+  src: url('/path-to-your-font.woff2') format('woff2');
+}
