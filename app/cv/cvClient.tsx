@@ -1,24 +1,25 @@
-import React, { useState } from 'react';
-import { Helmet } from 'react-helmet-async';
-import { motion } from 'framer-motion';
-import { Calendar, MapPin, TrendingUp, Award, Play, Star } from 'lucide-react';
-import Layout from '../components/Layout';
-import ProfileSelector from '../components/ProfileSelector';
+'use client'
+
+import React, { useState } from 'react'
+import Image from 'next/image'
+import { motion } from 'framer-motion'
+import { Calendar, TrendingUp, Award, Play, Star } from 'lucide-react'
+import ProfileSelector from '@/components/ui/profileSelector'
 
 interface Experience {
-  company: string;
-  location?: string;
-  role: string;
-  period: string;
-  achievements?: string[];
-  skills?: string[];
-  image?: string;
-  featured?: boolean;
+  company: string
+  location?: string
+  role: string
+  period: string
+  achievements?: string[]
+  skills?: string[]
+  image?: string
+  featured?: boolean
 }
 
-const CV = () => {
-  const [selectedProfile, setSelectedProfile] = useState<string>('');
-  const [showAll, setShowAll] = useState(false);
+export default function CVClient() {
+  const [selectedProfile, setSelectedProfile] = useState<string>('')
+  const [showAll, setShowAll] = useState(false)
 
   const experiences: Experience[] = [
     {
@@ -75,7 +76,7 @@ const CV = () => {
         "📱 Boosted views by 45% and shares by 30% through branded visual content and cross-functional collaboration"
       ]
     }
-  ];
+  ]
 
   const getPersonalizedContent = (profileType: string) => {
     switch (profileType) {
@@ -84,49 +85,37 @@ const CV = () => {
           title: "Talent Profile",
           subtitle: "Skills-focused experience overview",
           highlight: "Key achievements and growth metrics"
-        };
+        }
       case 'lurker':
         return {
           title: "Professional Journey",
           subtitle: "Casual browse through my career",
           highlight: "What I've been working on"
-        };
+        }
       case 'hiring-manager':
         return {
           title: "Leadership & Impact",
           subtitle: "Team building and strategic initiatives",
           highlight: "How I drive business results"
-        };
+        }
       default:
         return {
           title: "About Me",
           subtitle: "Professional experience and achievements",
           highlight: "My career journey so far"
-        };
+        }
     }
-  };
+  }
 
-  const content = getPersonalizedContent(selectedProfile);
-  const displayedExperiences = showAll ? experiences : experiences.slice(0, 2);
+  const content = getPersonalizedContent(selectedProfile)
+  const displayedExperiences = showAll ? experiences : experiences.slice(0, 2)
 
   if (!selectedProfile) {
-    return (
-      <Layout>
-        <Helmet>
-          <title>Profile Selection - AISHERE</title>
-        </Helmet>
-        <ProfileSelector onProfileSelect={setSelectedProfile} />
-      </Layout>
-    );
+    return <ProfileSelector onProfileSelect={setSelectedProfile} />
   }
 
   return (
-    <Layout>
-      <Helmet>
-        <title>{content.title} - AISHERE</title>
-        <meta name="description" content="Adnan Shamim's professional experience and achievements" />
-      </Helmet>
-
+    <div className="min-h-screen bg-netflix-black">
       {/* Profile Header */}
       <section className="pt-20 pb-8 bg-netflix-black">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -183,26 +172,32 @@ const CV = () => {
                   <div className="md:flex">
                     {/* Image Section */}
                     <div className="md:w-1/3 relative">
-                      <img 
-                        src={exp.image} 
-                        alt={exp.company}
-                        className="w-full h-48 md:h-full object-cover"
-                      />
-                      <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-all duration-300" />
-                      {exp.featured && (
-                        <div className="absolute top-4 left-4">
-                          <div className="bg-netflix-red text-netflix-white px-3 py-1 text-xs font-bold rounded-full flex items-center gap-1">
-                            <Award size={12} />
-                            FEATURED
+                      {exp.image && (
+                        <>
+                          <Image 
+                            src={exp.image} 
+                            alt={exp.company}
+                            width={400}
+                            height={300}
+                            className="w-full h-48 md:h-full object-cover"
+                          />
+                          <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-all duration-300" />
+                          {exp.featured && (
+                            <div className="absolute top-4 left-4">
+                              <div className="bg-netflix-red text-netflix-white px-3 py-1 text-xs font-bold rounded-full flex items-center gap-1">
+                                <Award size={12} />
+                                FEATURED
+                              </div>
+                            </div>
+                          )}
+                          <div className="absolute bottom-4 left-4 right-4">
+                            <div className="flex items-center gap-2 text-netflix-white">
+                              <Calendar size={16} />
+                              <span className="text-sm font-medium">{exp.period}</span>
+                            </div>
                           </div>
-                        </div>
+                        </>
                       )}
-                      <div className="absolute bottom-4 left-4 right-4">
-                        <div className="flex items-center gap-2 text-netflix-white">
-                          <Calendar size={16} />
-                          <span className="text-sm font-medium">{exp.period}</span>
-                        </div>
-                      </div>
                     </div>
 
                     {/* Content Section */}
@@ -300,8 +295,6 @@ const CV = () => {
           </motion.div>
         </div>
       </section>
-    </Layout>
-  );
-};
-
-export default CV;
+    </div>
+  )
+}

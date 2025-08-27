@@ -1,18 +1,20 @@
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
-import { Briefcase, Eye, Users } from 'lucide-react';
+'use client'
+
+import React from 'react'
+import { motion } from 'framer-motion'
+import { Briefcase, Eye, Users } from 'lucide-react'
 
 interface Profile {
-  id: string;
-  name: string;
-  icon: React.ReactNode;
-  color: string;
-  description: string;
+  id: string
+  name: string
+  icon: React.ReactNode
+  color: string
+  description: string
 }
 
 interface ProfileSelectorProps {
-  onProfileSelect: (profileId: string) => void;
-  selectedProfile?: string;
+  onProfileSelect: (profileId: string) => void
+  selectedProfile?: string
 }
 
 const ProfileSelector: React.FC<ProfileSelectorProps> = ({ onProfileSelect, selectedProfile }) => {
@@ -38,27 +40,40 @@ const ProfileSelector: React.FC<ProfileSelectorProps> = ({ onProfileSelect, sele
       color: 'bg-purple-600',
       description: 'Building great teams'
     }
-  ];
+  ]
 
   return (
-    <div className="py-16 bg-netflix-black">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="py-16 bg-netflix-black min-h-screen flex items-center">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-netflix-white mb-4">
+          <motion.h2 
+            className="text-3xl md:text-4xl font-bold text-netflix-white mb-4"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+          >
             Who's visiting?
-          </h2>
-          <p className="text-lg text-netflix-muted">
+          </motion.h2>
+          <motion.p 
+            className="text-lg text-netflix-muted"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
             Select your profile to get a personalized experience
-          </p>
+          </motion.p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {profiles.map((profile) => (
+          {profiles.map((profile, index) => (
             <motion.div
               key={profile.id}
               className={`cursor-pointer group ${
                 selectedProfile === profile.id ? 'ring-4 ring-netflix-red' : ''
               }`}
+              initial={{ opacity: 0, y: 50 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: index * 0.1 }}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               onClick={() => onProfileSelect(profile.id)}
@@ -79,7 +94,7 @@ const ProfileSelector: React.FC<ProfileSelectorProps> = ({ onProfileSelect, sele
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default ProfileSelector;
+export default ProfileSelector

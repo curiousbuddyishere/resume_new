@@ -1,24 +1,398 @@
-# Logs
-logs
-*.log
+# =============================================================================
+# COMPREHENSIVE .GITIGNORE FOR NEXT.JS 15 + TAILWIND CSS 4 PROJECT
+# =============================================================================
+
+# =============================================================================
+# SECURITY & ENVIRONMENT FILES
+# =============================================================================
+# Environment variables and configuration
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+.env.development
+.env.staging
+.env.production
+.env.*.local
+*.env
+
+# API Keys and Secrets
+.secrets
+secrets.json
+config/secrets.json
+*.key
+*.pem
+*.p12
+*.keystore
+auth.json
+service-account.json
+
+# Database files
+*.db
+*.sqlite
+*.sqlite3
+*.db-journal
+*.db-wal
+*.db-shm
+
+# Certificate files
+*.cert
+*.crt
+*.pfx
+
+# =============================================================================
+# NODE.JS & PACKAGE MANAGERS
+# =============================================================================
+# Dependencies
+node_modules/
+jspm_packages/
+bower_components/
+
+# Package manager files and cache
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
+.npm
+.yarn-integrity
+.yarn/cache
+.yarn/unplugged
+.yarn/build-state.yml
+.yarn/install-state.gz
+.pnp.*
+.pnpm-debug.log*
+.pnpm/
 
-node_modules
-dist
-dist-ssr
+# Package-lock backups
+package-lock.json.bak
+yarn.lock.bak
+pnpm-lock.yaml.bak
+
+# =============================================================================
+# NEXT.JS SPECIFIC
+# =============================================================================
+# Next.js build outputs
+.next/
+out/
+build/
+dist/
+dist-ssr/
 *.local
 
-# Editor directories and files
-.vscode/*
+# Next.js cache and build files
+.next/cache/
+.next/static/chunks/
+.next/standalone/
+.next/types/
+.next/trace
+
+# Next.js build info
+.next/build-manifest.json
+.next/export-marker.json
+.next/export-detail.json
+.next/prerender-manifest.json
+.next/routes-manifest.json
+.next/images-manifest.json
+.next/server/
+.next/static/
+.next/*.json
+
+# Next.js telemetry
+.next/package.json
+.next/required-server-files.json
+
+# Turbopack cache
+.turbo/
+
+# =============================================================================
+# TYPESCRIPT & JAVASCRIPT
+# =============================================================================
+# TypeScript build info
+*.tsbuildinfo
+.tsbuild/
+tsconfig.tsbuildinfo
+.next/types/
+*.ts.tmp
+*.tsx.tmp
+
+# JavaScript maps and temp files
+*.map
+*.js.map
+*.css.map
+*.min.js
+*.min.css
+dist/
+build/
+
+# =============================================================================
+# CSS & STYLING
+# =============================================================================
+# Tailwind CSS build outputs
+.tailwindcss-cache/
+tailwind.output.css
+
+# PostCSS cache
+.postcss/
+.postcssrc.local.js
+
+# CSS build outputs
+styles/dist/
+css/dist/
+*.css.map
+
+# Sass cache
+.sass-cache/
+*.css.map
+
+# =============================================================================
+# TESTING & COVERAGE
+# =============================================================================
+# Test coverage
+coverage/
+*.lcov
+.nyc_output/
+.coverage/
+.cache/
+
+# Jest
+jest-results.json
+jest.config.local.js
+
+# Playwright
+playwright-report/
+test-results/
+playwright/.cache/
+
+# Cypress
+cypress/videos/
+cypress/screenshots/
+cypress/downloads/
+cypress/fixtures/downloads/
+
+# =============================================================================
+# LINTING & CODE QUALITY
+# =============================================================================
+# ESLint cache
+.eslintcache
+.eslint/
+eslint-report.json
+
+# Prettier cache
+.prettiercache
+
+# Stylelint
+.stylelintcache
+
+# =============================================================================
+# DEVELOPMENT & BUILD TOOLS
+# =============================================================================
+# Logs
+logs
+*.log
+.log/
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Dependency directories and files
+lib-cov
+lcov.info
+.grunt
+.nyc_output
+.node_repl_history
+.npm-debug.log*
+
+# Build tools
+.webpack/
+.turbo/
+.swc/
+
+# =============================================================================
+# DEPLOYMENT & PLATFORM SPECIFIC
+# =============================================================================
+# Vercel
+.vercel/
+.vercel.json
+
+# Docker
+.dockerignore
+Dockerfile.prod
+docker-compose.override.yml
+.docker/
+
+# Platform.sh
+.platform/
+
+# Netlify
+.netlify/
+
+# GitHub Actions
+.github/workflows/*.local.yml
+
+# =============================================================================
+# EDITORS & IDEs
+# =============================================================================
+# VS Code
+.vscode/
 !.vscode/extensions.json
-.idea
-.DS_Store
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+.vscode/settings.local.json
+
+# JetBrains IDEs
+.idea/
+*.swp
+*.swo
+*~
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# Vim
+*.swp
+*.swo
+*.swn
+.netrwhist
+*~
+
+# Emacs
+*~
+\#*\#
+/.emacs.desktop
+/.emacs.desktop.lock
+*.elc
+auto-save-list
+tramp
+.\#*
+
+# Visual Studio
+.vs/
 *.suo
 *.ntvs*
 *.njsproj
 *.sln
 *.sw?
+
+# =============================================================================
+# OPERATING SYSTEM FILES
+# =============================================================================
+# macOS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+.AppleDouble
+.LSOverride
+.DocumentRevisions-V100
+.fseventsd
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+
+# Windows
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+*.tmp
+*.temp
+Desktop.ini
+$RECYCLE.BIN/
+*.cab
+*.msi
+*.msix
+*.msm
+*.msp
+*.lnk
+
+# Linux
+*~
+.directory
+.Trash-*
+
+# =============================================================================
+# TEMPORARY & CACHE FILES
+# =============================================================================
+# Temporary folders
+tmp/
+temp/
+.tmp/
+.temp/
+
+# Cache directories
+.cache/
+*.cache
+.parcel-cache/
+.next/cache/
+.nuxt/
+.vuepress/dist
+
+# Backup files
+*.bak
+*.backup
+*.old
+*.orig
+*~
+
+# =============================================================================
+# MONITORING & ANALYTICS
+# =============================================================================
+# Monitoring
+.sentryclirc
+sentry.properties
+
+# Analytics
+.analytics/
+analytics.json
+
+# Error tracking
+*.error.log
+error-*.log
+
+# =============================================================================
+# AI TOOLS & DEVELOPMENT ASSISTANTS
+# =============================================================================
+# AI coding assistants
+.bolt/
+.claude/
+.copilot/
+.cursor/
+.replit/
+.gitpod.yml
+.gitpod.Dockerfile
+.devcontainer/
+
+# AI generated files
+ai-generated/
+*.ai.md
+*.generated.*
+
+# =============================================================================
+# CUSTOM PROJECT FILES
+# =============================================================================
+# Project specific temporary files
+.scratch/
+notes.md
+todo.md
+NOTES.md
+TODO.md
+
+# Local configuration overrides
+*.local.json
+*.local.js
+*.local.ts
+config.local.*
+
+# Development utilities
+debug.html
+test.html
+playground/
