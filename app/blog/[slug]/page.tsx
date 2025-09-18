@@ -1,7 +1,6 @@
 import { notFound } from 'next/navigation'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
-import Link from 'next/link'
 import Navigation from '@/components/ui/navigation'
 import { getPostBySlug, getAllPosts } from '@/lib/posts'
 
@@ -117,11 +116,6 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                   <ol className="list-decimal list-inside text-secondary mb-4 space-y-2">
                     {children}
                   </ol>
-                ),
-                li: ({ children }) => (
-                  <li className="text-secondary">
-                    {children}
-                  </li>
                 ),
                 strong: ({ children }) => (
                   <strong className="font-bold text-primary">

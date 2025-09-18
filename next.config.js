@@ -2,8 +2,8 @@
 const nextConfig = {
   experimental: {
     optimizePackageImports: ['lucide-react', 'framer-motion'],
-    serverComponentsExternalPackages: ['gray-matter'],
   },
+  serverExternalPackages: ['gray-matter'],
   images: {
     remotePatterns: [
       {
@@ -18,14 +18,12 @@ const nextConfig = {
   poweredByHeader: false,
   generateEtags: true,
   compress: true,
-  swcMinify: true,
   reactStrictMode: false,
   typescript: {
     ignoreBuildErrors: false,
   },
   // Production optimizations
   productionBrowserSourceMaps: false,
-  optimizeFonts: true,
   // Enable ISR revalidation
   staticPageGenerationTimeout: 60000,
   // Performance optimizations

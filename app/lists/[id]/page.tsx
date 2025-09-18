@@ -33,7 +33,7 @@ export async function generateMetadata({ params }: ListPageProps): Promise<Metad
 }
 
 // Simple markdown link parser
-const renderListItem = (item: string, index: number) => {
+const renderListItem = (item: string) => {
   // Check if item is a markdown link format [text](url)
   const linkRegex = /\[([^\]]+)\]\(([^)]+)\)/
   const match = item.match(linkRegex)
@@ -95,7 +95,7 @@ export default async function ListPage({ params }: ListPageProps) {
             <ul className="divide-y divide-custom">
               {list.items.map((item, index) => (
                 <li key={index} className="p-5 sm:p-6 hover:bg-tertiary/50 transition-colors">
-                  {renderListItem(item, index)}
+                  {renderListItem(item)}
                 </li>
               ))}
             </ul>
