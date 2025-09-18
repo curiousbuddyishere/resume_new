@@ -2,6 +2,7 @@
 const nextConfig = {
   experimental: {
     optimizePackageImports: ['lucide-react', 'framer-motion'],
+    serverComponentsExternalPackages: ['gray-matter'],
   },
   images: {
     remotePatterns: [
@@ -17,12 +18,40 @@ const nextConfig = {
   poweredByHeader: false,
   generateEtags: true,
   compress: true,
+  swcMinify: true,
+  reactStrictMode: false,
   typescript: {
-    // !! WARN !!
-    // Dangerously allow production builds to successfully complete even if
-    // your project has type errors.
-    // !! WARN !!
     ignoreBuildErrors: false,
+  },
+  // Production optimizations
+  productionBrowserSourceMaps: false,
+  optimizeFonts: true,
+  // Enable ISR revalidation
+  staticPageGenerationTimeout: 60000,
+  // Performance optimizations
+  compiler: {
+    removeConsole: process.env.NODE_ENV === 'production' ? { exclude: ['error'] } : false,
+  },
+  // Bundle optimizations
+  modularizeImports: {
+    'lucide-react': {
+      transform: 'lucide-react/{{member}}',
+      skipDefaultConversion: true,
+    },
+  },
+  // Caching optimizations
+  async headers() {
+    return [
+      {
+        source: '/:all*(svg|jpg|png|webp|avif|gif|ico|woff|woff2|ttf|eot)',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable',
+          },
+        ],
+      },
+    ]
   },
 }
 

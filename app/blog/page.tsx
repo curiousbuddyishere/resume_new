@@ -15,10 +15,10 @@ export default function BlogPage() {
     <>
       <Navigation />
 
-      <main className="min-h-screen bg-primary pt-24 pb-16">
+      <main className="min-h-screen bg-primary pt-16 pb-16">
         <div className="max-w-4xl mx-auto px-4 sm:px-6">
-          <div className="mb-16">
-            <h1 className="text-4xl font-light text-primary tracking-tight mb-4">
+          <div className="mb-12 sm:mb-16">
+            <h1 className="text-3xl sm:text-4xl font-light text-primary tracking-tight mb-4">
               Blog
             </h1>
           </div>
@@ -34,15 +34,16 @@ export default function BlogPage() {
                     key={post.slug}
                     href={`/blog/${post.slug}`}
                     className="group block bg-card border border-custom rounded-xl overflow-hidden transition-all duration-300 hover:border-accent hover:shadow-lg"
+                    prefetch={true}
                   >
-                    <div className="p-6">
-                      <div className="flex flex-wrap items-center gap-4 text-sm text-tertiary mb-3">
+                    <div className="p-5 sm:p-6">
+                      <div className="flex flex-wrap items-center gap-3 sm:gap-4 text-sm text-tertiary mb-3">
                         <time>{post.date}</time>
                         <span>•</span>
                         <span>{readingTime} min read</span>
                       </div>
                       
-                      <h3 className="text-xl font-medium text-primary mb-2 group-hover:text-accent transition-colors">
+                      <h3 className="text-lg sm:text-xl font-medium text-primary mb-2 group-hover:text-accent transition-colors">
                         {post.title}
                       </h3>
                       

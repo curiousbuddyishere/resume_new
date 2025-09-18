@@ -1,49 +1,22 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import Navigation from '@/components/ui/navigation'
+import { lists } from '@/lib/lists'
 
 export const metadata: Metadata = {
   title: 'Lists | Adnan Shamim',
-  description: 'Curated lists of movies and quotes.',
+  description: 'Curated lists of movies and reading materials.',
 }
-
-// Mock data for movies and quotes
-const lists = [
-  {
-    id: 'movies',
-    title: 'Favorite Movies',
-    description: 'A collection of movies that have inspired and influenced my thinking.',
-    items: [
-      'The Shawshank Redemption (1994)',
-      'Inception (2010)',
-      'The Dark Knight (2008)',
-      'Pulp Fiction (1994)',
-      'Interstellar (2014)'
-    ]
-  },
-  {
-    id: 'quotes',
-    title: 'Inspirational Quotes',
-    description: 'Quotes that guide my approach to product management and life.',
-    items: [
-      '"The best way to predict the future is to invent it." - Alan Kay',
-      '"Stay hungry, stay foolish." - Steve Jobs',
-      '"Innovation distinguishes between a leader and a follower." - Steve Jobs',
-      '"The only way to do great work is to love what you do." - Steve Jobs',
-      '"Success is not final, failure is not fatal: it is the courage to continue that counts." - Winston Churchill'
-    ]
-  }
-]
 
 export default function ListsPage() {
   return (
     <>
       <Navigation />
 
-      <main className="min-h-screen bg-primary pt-24 pb-16">
+      <main className="min-h-screen bg-primary pt-16 pb-16">
         <div className="max-w-4xl mx-auto px-4 sm:px-6">
-          <div className="mb-16">
-            <h1 className="text-4xl font-light text-primary tracking-tight mb-4">
+          <div className="mb-12 sm:mb-16">
+            <h1 className="text-3xl sm:text-4xl font-light text-primary tracking-tight mb-4">
               Lists
             </h1>
           </div>
@@ -54,9 +27,10 @@ export default function ListsPage() {
                 key={list.id}
                 href={`/lists/${list.id}`}
                 className="group block bg-card border border-custom rounded-xl overflow-hidden transition-all duration-300 hover:border-accent hover:shadow-lg"
+                prefetch={true}
               >
-                <div className="p-6">
-                  <h3 className="text-xl font-medium text-primary mb-2 group-hover:text-accent transition-colors">
+                <div className="p-5 sm:p-6">
+                  <h3 className="text-lg sm:text-xl font-medium text-primary mb-2 group-hover:text-accent transition-colors">
                     {list.title}
                   </h3>
                   
@@ -65,10 +39,6 @@ export default function ListsPage() {
                       {list.description}
                     </p>
                   )}
-                  
-                  <div className="text-tertiary text-sm">
-                    {list.items.length} items
-                  </div>
                 </div>
               </Link>
             ))}
