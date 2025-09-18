@@ -31,14 +31,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
       <Navigation />
       <div className="min-h-screen bg-primary pt-16">
         <article className="max-w-[720px] mx-auto px-4 sm:px-6 py-16">
-          <div className="mb-8">
-            <Link
-              href="/blog"
-              className="text-secondary hover:text-accent transition-colors duration-300 mb-8 inline-flex items-center gap-1"
-            >
-              ← Back to Blog
-            </Link>
-
+          <div className="mb-8 animate-fade-in">
             <div className="flex items-center gap-4 mb-4 text-sm text-tertiary">
               <time>{post.date}</time>
               {post.tags && post.tags.length > 0 && (
@@ -66,7 +59,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             )}
           </div>
 
-          <div className="prose prose-lg max-w-none prose-headings:text-primary prose-p:text-secondary prose-a:text-accent prose-a:hover:text-primary prose-strong:text-primary prose-code:text-tertiary prose-pre:bg-tertiary prose-blockquote:text-secondary prose-blockquote:border-l-custom">
+          <div className="prose prose-lg max-w-none prose-headings:text-primary prose-p:text-secondary prose-a:text-accent prose-a:hover:text-primary prose-strong:text-primary prose-code:text-tertiary prose-pre:bg-tertiary prose-blockquote:text-secondary prose-blockquote:border-l-custom animate-fade-in">
             <ReactMarkdown
               remarkPlugins={[remarkGfm]}
               components={{

@@ -13,6 +13,7 @@ const Navigation = () => {
     { path: '/', label: 'Home' },
     { path: '/projects', label: 'Projects' },
     { path: '/blog', label: 'Blog' },
+    { path: '/lists', label: 'Lists' },
   ]
 
   return (
@@ -20,12 +21,14 @@ const Navigation = () => {
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <Link href="/" className="text-xl font-light text-gradient hover:scale-105 transition-transform duration-300">
-            AS
-          </Link>
+          <div className="flex-1">
+            <Link href="/" className="text-xl font-light text-gradient hover:scale-105 transition-transform duration-300">
+              AS
+            </Link>
+          </div>
 
           {/* Desktop Navigation */}
-          <div className="hidden sm:flex items-center space-x-8">
+          <div className="hidden sm:flex items-center justify-center space-x-8 flex-1">
             {links.map(({ path, label }) => (
               <Link
                 key={path}

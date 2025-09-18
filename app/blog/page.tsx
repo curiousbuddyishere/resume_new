@@ -1,6 +1,12 @@
+import type { Metadata } from 'next'
 import Link from 'next/link'
 import Navigation from '@/components/ui/navigation'
 import { getAllPosts } from '@/lib/posts'
+
+export const metadata: Metadata = {
+  title: 'Blog | Adnan Shamim',
+  description: 'Thoughts and insights by Adnan Shamim, Product Manager.',
+}
 
 export default function BlogPage() {
   const posts = getAllPosts()
@@ -8,64 +14,68 @@ export default function BlogPage() {
   return (
     <>
       <Navigation />
-      <div className="min-h-screen bg-primary pt-16">
-        <div className="max-w-[720px] mx-auto px-4 sm:px-6 py-16">
-          <div className="text-center mb-16">
-            <h1 className="text-4xl font-light text-primary tracking-tight mb-4">Blog</h1>
-            <p className="text-xl text-secondary leading-relaxed">
-              Thoughts on product management, technology, and building things that matter.
-            </p>
+
+      <main className="min-h-screen bg-primary pt-24 pb-16">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6">
+          <div className="mb-16">
+            <h1 className="text-4xl font-light text-primary tracking-tight mb-4">
+              Blog
+            </h1>
           </div>
 
-          {posts.length === 0 ? (
-            <div className="text-center py-16">
-              <p className="text-secondary text-lg">No posts yet. Check back soon!</p>
-            </div>
-          ) : (
-            <div className="space-y-8">
-              {posts.map((post) => (
-                <article
-                  key={post.slug}
-                  className="bg-card rounded-lg p-6 border border-custom hover:border-accent transition-all duration-300"
-                >
-                  <div className="flex items-center justify-between mb-4">
-                    <time className="text-sm text-tertiary">{post.date}</time>
-                    {post.tags && post.tags.length > 0 && (
-                      <div className="flex gap-2">
-                        {post.tags.slice(0, 3).map((tag) => (
-                          <span
-                            key={tag}
-                            className="text-xs bg-tertiary text-tertiary px-2 py-1 rounded"
-                          >
-                            {tag}
-                          </span>
-                        ))}
+          {posts.length > 0 ? (
+            <div className="space-y-6">
+              {posts.map((post) => {
+                // Calculate reading time (approx 200 words per minute)
+                const readingTime = Math.ceil(post.content.split(' ').length / 200)
+                
+                return (
+                  <Link
+                    key={post.slug}
+                    href={`/blog/${post.slug}`}
+                    className="group block bg-card border border-custom rounded-xl overflow-hidden transition-all duration-300 hover:border-accent hover:shadow-lg"
+                  >
+                    <div className="p-6">
+                      <div className="flex flex-wrap items-center gap-4 text-sm text-tertiary mb-3">
+                        <time>{post.date}</time>
+                        <span>•</span>
+                        <span>{readingTime} min read</span>
                       </div>
-                    )}
-                  </div>
-
-                  <Link href={`/blog/${post.slug}`} className="block group">
-                    <h2 className="text-2xl font-medium text-primary mb-3 group-hover:text-accent transition-colors">
-                      {post.title}
-                    </h2>
-                    {post.description && (
-                      <p className="text-secondary leading-relaxed mb-4">
-                        {post.description}
-                      </p>
-                    )}
-                    <div className="inline-flex items-center gap-1 text-accent group-hover:text-bright transition-colors font-medium">
-                      Read more
-                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                      </svg>
+                      
+                      <h3 className="text-xl font-medium text-primary mb-2 group-hover:text-accent transition-colors">
+                        {post.title}
+                      </h3>
+                      
+                      {post.description && (
+                        <p className="text-secondary mb-4 text-sm leading-relaxed" style={{ display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', overflow: 'hidden' }}>
+                          {post.description}
+                        </p>
+                      )}
+                      
+                      {post.tags && post.tags.length > 0 && (
+                        <div className="flex flex-wrap gap-2">
+                          {post.tags.slice(0, 3).map((tag) => (
+                            <span 
+                              key={tag}
+                              className="px-2 py-1 bg-tertiary text-tertiary text-xs rounded-full"
+                            >
+                              {tag}
+                            </span>
+                          ))}
+                        </div>
+                      )}
                     </div>
                   </Link>
-                </article>
-              ))}
+                )
+              })}
+            </div>
+          ) : (
+            <div className="text-center py-16">
+              <p className="text-secondary">No posts available yet. Check back soon!</p>
             </div>
           )}
         </div>
-      </div>
+      </main>
     </>
   )
 }
