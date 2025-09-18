@@ -14,22 +14,22 @@ export const metadata: Metadata = {
     default: 'AISHERE - Product Manager & Growth Expert',
     template: '%s | AISHERE'
   },
-  description: 'Product manager, cinema lover, and growth expert building scalable solutions.',
-  keywords: ['product manager', 'growth expert', 'e-commerce', 'strategy', 'cinema', 'analytics'],
+  description: 'AI Product Strategist building scalable solutions that serve millions. Transforming complex challenges into intuitive experiences through data-driven innovation.',
+  keywords: ['ai product manager', 'product strategist', 'machine learning', 'growth expert', 'e-commerce', 'data-driven innovation', 'scalable solutions', 'user experience'],
   authors: [{ name: 'Adnan Shamim' }],
   creator: 'Adnan Shamim',
   openGraph: {
     type: 'website',
     locale: 'en_US',
     url: 'https://aishere.xyz',
-    title: 'AISHERE - Product Manager & Growth Expert',
-    description: 'Product manager, cinema lover, and growth expert building scalable solutions.',
+    title: 'AISHERE - AI Product Strategist',
+    description: 'AI Product Strategist building scalable solutions that serve millions. Transforming complex challenges into intuitive experiences.',
     siteName: 'AISHERE',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'AISHERE - Product Manager & Growth Expert',
-    description: 'Product manager, cinema lover, and growth expert building scalable solutions.',
+    title: 'AISHERE - AI Product Strategist',
+    description: 'AI Product Strategist building scalable solutions that serve millions. Transforming complex challenges into intuitive experiences.',
   },
   robots: {
     index: true,

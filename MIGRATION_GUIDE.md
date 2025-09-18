@@ -21,8 +21,10 @@ Your React portfolio has been successfully migrated to Next.js 15 with Tailwind 
 │   ├── projects/
 │   │   ├── page.tsx            # Projects page (/projects)
 │   │   └── projectsClient.tsx  # Projects client component
-│   └── posts/
-│       └── page.tsx            # Posts page (/posts)
+│   ├── blog/
+│   │   ├── page.tsx            # Blog listing page (/blog)
+│   │   └── [slug]/
+│   │       └── page.tsx        # Individual blog posts (/blog/[slug])
 ├── components/
 │   └── ui/
 │       ├── navigation.tsx      # Updated navigation component
@@ -53,7 +55,7 @@ yarn dev
 - ✅ Home page with animations
 - ✅ CV page with profile selector
 - ✅ Projects page with filtering
-- ✅ Posts page
+- ✅ Blog page with markdown support
 - ✅ Navigation between pages
 - ✅ Responsive design
 - ✅ Netflix theme styling
