@@ -11,7 +11,6 @@
   },
   "dependencies": {
     "@tailwindcss/postcss": "^4.1.12",
-    "framer-motion": "^12.0.5",
     "gray-matter": "^4.0.3",
     "lucide-react": "^0.344.0",
     "next": "^15.0.0",
@@ -21,7 +20,6 @@
     "remark-gfm": "^4.0.1"
   },
   "devDependencies": {
-    "@tailwindcss/typography": "^0.5.10",
     "@types/node": "^20",
     "@types/react": "^18.3.5",
     "@types/react-dom": "^18.3.0",

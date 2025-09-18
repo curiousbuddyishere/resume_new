@@ -1,4 +1,3 @@
-import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
@@ -19,30 +18,6 @@ export async function generateStaticParams() {
   }))
 }
 
-export async function generateMetadata({ params }: BlogPostPageProps): Promise<Metadata> {
-  const { slug } = await params
-  const post = getPostBySlug(slug)
-
-  if (!post) {
-    return {
-      title: 'Post Not Found',
-    }
-  }
-
-  return {
-    title: `${post.title} | AISHERE`,
-    description: post.description || `Blog post by Adnan Shamim`,
-    openGraph: {
-      title: `${post.title} | AISHERE`,
-      description: post.description || `Blog post by Adnan Shamim`,
-      type: 'article',
-      publishedTime: post.date,
-      authors: ['Adnan Shamim'],
-      tags: post.tags,
-    },
-  }
-}
-
 export default async function BlogPostPage({ params }: BlogPostPageProps) {
   const { slug } = await params
   const post = getPostBySlug(slug)
@@ -54,24 +29,24 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   return (
     <>
       <Navigation />
-      <div className="pt-20 min-h-screen bg-netflix-black">
-        <article className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <div className="min-h-screen bg-primary pt-16">
+        <article className="max-w-[720px] mx-auto px-4 sm:px-6 py-16">
           <div className="mb-8">
             <Link
               href="/blog"
-              className="text-netflix-muted hover:text-netflix-red transition-colors mb-8 inline-block"
+              className="text-secondary hover:text-accent transition-colors duration-300 mb-8 inline-flex items-center gap-1"
             >
               ← Back to Blog
             </Link>
 
-            <div className="flex items-center gap-4 mb-4 text-sm text-netflix-muted">
+            <div className="flex items-center gap-4 mb-4 text-sm text-tertiary">
               <time>{post.date}</time>
               {post.tags && post.tags.length > 0 && (
                 <div className="flex gap-2">
                   {post.tags.map((tag) => (
                     <span
                       key={tag}
-                      className="bg-netflix-gray text-netflix-white px-2 py-1 rounded text-xs"
+                      className="bg-tertiary text-tertiary px-2 py-1 rounded text-xs"
                     >
                       {tag}
                     </span>
@@ -80,45 +55,45 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
               )}
             </div>
 
-            <h1 className="text-4xl md:text-5xl font-bold text-netflix-white mb-4">
+            <h1 className="text-4xl font-light text-primary mb-4 leading-tight tracking-tight">
               {post.title}
             </h1>
 
             {post.description && (
-              <p className="text-xl text-netflix-muted mb-8">
+              <p className="text-xl text-secondary mb-8 leading-relaxed">
                 {post.description}
               </p>
             )}
           </div>
 
-          <div className="prose prose-lg prose-invert max-w-none">
+          <div className="prose prose-lg max-w-none prose-headings:text-primary prose-p:text-secondary prose-a:text-accent prose-a:hover:text-primary prose-strong:text-primary prose-code:text-tertiary prose-pre:bg-tertiary prose-blockquote:text-secondary prose-blockquote:border-l-custom">
             <ReactMarkdown
               remarkPlugins={[remarkGfm]}
               components={{
                 h1: ({ children }) => (
-                  <h1 className="text-3xl font-bold text-netflix-white mt-8 mb-4">
+                  <h1 className="text-3xl font-light text-primary mt-8 mb-4 leading-tight tracking-tight">
                     {children}
                   </h1>
                 ),
                 h2: ({ children }) => (
-                  <h2 className="text-2xl font-bold text-netflix-white mt-6 mb-3">
+                  <h2 className="text-2xl font-light text-primary mt-6 mb-3 leading-tight tracking-tight">
                     {children}
                   </h2>
                 ),
                 h3: ({ children }) => (
-                  <h3 className="text-xl font-bold text-netflix-white mt-5 mb-2">
+                  <h3 className="text-xl font-light text-primary mt-5 mb-2 leading-tight tracking-tight">
                     {children}
                   </h3>
                 ),
                 p: ({ children }) => (
-                  <p className="text-netflix-white mb-4 leading-relaxed">
+                  <p className="text-secondary mb-4 leading-relaxed">
                     {children}
                   </p>
                 ),
                 a: ({ href, children }) => (
                   <a
                     href={href}
-                    className="text-netflix-red hover:text-netflix-white transition-colors"
+                    className="text-accent hover:text-bright transition-colors duration-300"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
@@ -126,42 +101,42 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                   </a>
                 ),
                 code: ({ children }) => (
-                  <code className="bg-netflix-gray text-netflix-white px-1 py-0.5 rounded text-sm">
+                  <code className="bg-tertiary text-tertiary px-1 py-0.5 rounded text-sm">
                     {children}
                   </code>
                 ),
                 pre: ({ children }) => (
-                  <pre className="bg-netflix-gray text-netflix-white p-4 rounded-lg overflow-x-auto mb-4">
+                  <pre className="bg-tertiary text-tertiary p-4 rounded-lg overflow-x-auto mb-4 border border-custom">
                     {children}
                   </pre>
                 ),
                 blockquote: ({ children }) => (
-                  <blockquote className="border-l-4 border-netflix-red pl-4 italic text-netflix-muted my-4">
+                  <blockquote className="border-l-4 border-accent pl-4 italic text-secondary my-4">
                     {children}
                   </blockquote>
                 ),
                 ul: ({ children }) => (
-                  <ul className="list-disc list-inside text-netflix-white mb-4 space-y-2">
+                  <ul className="list-disc list-inside text-secondary mb-4 space-y-2">
                     {children}
                   </ul>
                 ),
                 ol: ({ children }) => (
-                  <ol className="list-decimal list-inside text-netflix-white mb-4 space-y-2">
+                  <ol className="list-decimal list-inside text-secondary mb-4 space-y-2">
                     {children}
                   </ol>
                 ),
                 li: ({ children }) => (
-                  <li className="text-netflix-white">
+                  <li className="text-secondary">
                     {children}
                   </li>
                 ),
                 strong: ({ children }) => (
-                  <strong className="font-bold text-netflix-white">
+                  <strong className="font-bold text-primary">
                     {children}
                   </strong>
                 ),
                 em: ({ children }) => (
-                  <em className="italic text-netflix-white">
+                  <em className="italic text-secondary">
                     {children}
                   </em>
                 ),
@@ -169,7 +144,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                   <img
                     src={src}
                     alt={alt}
-                    className="max-w-md mx-auto my-6 rounded-lg shadow-lg border border-netflix-gray"
+                    className="max-w-md mx-auto my-6 rounded-lg shadow-lg border border-accent"
                   />
                 ),
               }}
