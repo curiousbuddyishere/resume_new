@@ -396,3 +396,4 @@ config.local.*
 debug.html
 test.html
 playground/
+.vercel
