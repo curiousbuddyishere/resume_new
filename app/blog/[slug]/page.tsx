@@ -131,7 +131,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                   <img
                     src={src}
                     alt={alt}
-                    className="max-w-full mx-auto my-6 rounded-lg shadow-lg border border-accent"
+                    className="max-w-full mx-auto my-6 rounded-lg shadow-lg w-full max-w-2xl h-auto max-h-80 object-contain"
                   />
                 ),
               }}
